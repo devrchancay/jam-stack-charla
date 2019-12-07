@@ -1,37 +1,34 @@
-import React from 'react';
-import { graphql } from 'gatsby';
+/** @jsx jsx */
+import { jsx } from '@emotion/core';
+import tw from 'tailwind.macro';
+import { graphql, Link } from 'gatsby';
+
+import Layout from '../components/Layout';
 
 const Speakers = ({ data }) => {
   return (
-    <ul
-      style={{
-        display: 'flex',
-        flexWrap: 'wrap',
-        listStyle: 'none',
-        justifyContent: 'center'
-      }}
-    >
-      {data.allWordpressWpSpeakers.edges.map(({ node }) => {
-        return (
-          <li
-            key={node.wordpress_id}
-            style={{
-              width: '33%',
-              display: 'flex',
-              justifyItems: 'center',
-              alignItems: 'center',
-              marginBottom: '1rem'
-            }}
-          >
-            <img
-              style={{ borderRadius: '50%' }}
-              src={node.avatar_urls.wordpress_96}
-            />
-            <p style={{ paddingLeft: '10px' }}>{node.title}</p>
-          </li>
-        );
-      })}
-    </ul>
+    <Layout>
+      <ul css={tw`flex flex-wrap list-none p-0`}>
+        {data.allWordpressWpSpeakers.edges.map(({ node }) => {
+          return (
+            <li css={tw`w-full md:w-1/4  `} key={node.wordpress_id}>
+              <Link
+                css={tw`flex justify-start items-center content-center md:flex-col no-underline hover:bg-blue-200 mb-3 md:my-4  md:p-4`}
+                to={node.path}
+              >
+                <img
+                  css={tw`rounded-full`}
+                  src={node.avatar_urls.wordpress_96}
+                />
+                <p css={tw`ml-4 text-center text-2xl text-gray-800`}>
+                  {node.title}
+                </p>
+              </Link>
+            </li>
+          );
+        })}
+      </ul>
+    </Layout>
   );
 };
 
@@ -43,6 +40,7 @@ export const query = graphql`
           wordpress_id
           slug
           title
+          path
           avatar_urls {
             wordpress_96
           }

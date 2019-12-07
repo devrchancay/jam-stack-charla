@@ -4,12 +4,18 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "develop": "gatsby develop"
+    "develop": "gatsby develop",
+    "debug": "node --inspect node_modules/.bin/gatsby develop"
   },
   "dependencies": {
+    "@emotion/core": "^10.0.22",
+    "@emotion/styled": "^10.0.23",
     "gatsby": "^2.18.6",
+    "gatsby-plugin-emotion": "^4.1.16",
     "gatsby-source-wordpress": "^3.1.51",
     "react": "^16.12.0",
-    "react-dom": "^16.12.0"
+    "react-dom": "^16.12.0",
+    "slugify": "^1.3.6",
+    "tailwind.macro": "^1.0.0-alpha.10"
   }
 }
