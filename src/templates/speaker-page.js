@@ -15,8 +15,8 @@ const PageSpeaker = ({ data }) => (
 );
 
 export const query = graphql`
-  {
-    wordpressWpSpeakers(wordpress_id: { eq: 1463 }) {
+  query($WordpressID: Int!) {
+    wordpressWpSpeakers(wordpress_id: { eq: $WordpressID }) {
       avatar_urls {
         wordpress_96
       }
